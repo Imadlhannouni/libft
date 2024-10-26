@@ -27,10 +27,6 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-<<<<<<< HEAD
-re: fclean all
-=======
 re: fclean all test
->>>>>>> 572285e (new)
 
 .PHONY: all clean fclean re

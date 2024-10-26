@@ -1,33 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilhannou <ilhannou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 15:12:01 by ilhannou          #+#    #+#             */
-/*   Updated: 2024/10/26 14:41:29 by ilhannou         ###   ########.fr       */
+/*   Created: 2024/10/26 15:32:56 by ilhannou          #+#    #+#             */
+/*   Updated: 2024/10/26 16:26:46 by ilhannou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	int	i;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	while (s[i])
+	j = 0;
+	if (!haystack || !needle)
+		return (NULL);
+	if (ft_strlen(needle) == 0)
+		return ((char *) haystack);
+	while (i < len && haystack[i])
 	{
-		if (s[i] == (char)c)
+		j = 0;
+		while (needle[j] && (i + j) < len)
 		{
-			return ((char *)(s + i));
+			if (haystack[i + j] != needle[j])
+				break;
+			j++;
 		}
+		if (needle[j] == '\0')
+			return ((char *)&haystack[i]);
 		i++;
 	}
-	if (s[i] == (char)c)
-	{
-		return ((char *)(s + i));
-	}
 	return (NULL);
+}
+
+int main()
+{
+	printf("%s", ft_strnstr("Hi my name is imad", "name", 18));
 }
