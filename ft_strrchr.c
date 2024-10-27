@@ -6,7 +6,7 @@
 /*   By: ilhannou <ilhannou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:36:22 by ilhannou          #+#    #+#             */
-/*   Updated: 2024/10/26 14:41:54 by ilhannou         ###   ########.fr       */
+/*   Updated: 2024/10/27 17:15:52 by ilhannou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_strrchr(const char *s, int c)
 	while (i >= 0)
 	{
 		if (s[i] == (char)c)
-			return ((char *)(s + i));
+			return ((char *)&s[i]);
 		i--;
 	}
 	return (NULL);
