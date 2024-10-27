@@ -15,7 +15,7 @@ $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
 test: $(MAIN).o $(NAME)
-	$(CC) $(FLAGS) -o $(MAIN) $(MAIN).o $(NAME)
+	$(CC) $(CFLAGS) -o $(MAIN) $(MAIN).o $(NAME)
 	./$(MAIN)
 
 %.o: %.c

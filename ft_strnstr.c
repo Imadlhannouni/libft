@@ -6,7 +6,7 @@
 /*   By: ilhannou <ilhannou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 15:32:56 by ilhannou          #+#    #+#             */
-/*   Updated: 2024/10/26 16:26:46 by ilhannou         ###   ########.fr       */
+/*   Updated: 2024/10/26 23:40:58 by ilhannou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 		while (needle[j] && (i + j) < len)
 		{
 			if (haystack[i + j] != needle[j])
-				break;
+				break ;
 			j++;
 		}
 		if (needle[j] == '\0')
@@ -37,9 +37,4 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 		i++;
 	}
 	return (NULL);
-}
-
-int main()
-{
-	printf("%s", ft_strnstr("Hi my name is imad", "name", 18));
 }
