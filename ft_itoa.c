@@ -1,35 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilhannou <ilhannou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/26 15:32:56 by ilhannou          #+#    #+#             */
-/*   Updated: 2024/10/30 16:06:58 by ilhannou         ###   ########.fr       */
+/*   Created: 2024/10/30 15:18:26 by ilhannou          #+#    #+#             */
+/*   Updated: 2024/10/30 16:07:24 by ilhannou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+static int	ft_num_len(int n)
 {
-	size_t	i;
-	size_t	j;
+	int	len;
 
-	if (!haystack || !needle)
-		return (NULL);
-	if (ft_strlen(needle) == 0)
-		return ((char *)haystack);
-	i = 0;
-	while (i < len && haystack[i])
+	len = 0;
+	if (n <= 0)
+		len = 1;
+	while (n != 0)
 	{
-		j = 0;
-		while (needle[j] && (i + j) < len && haystack[i + j] == needle[j])
-			j++;
-		if (needle[j] == '\0')
-			return ((char *)&haystack[i]);
-		i++;
+		n /= 10;
+		len++;
 	}
-	return (NULL);
+	return (len);
+}
+
+char	*ft_itoa(int n)
+{
+	char	*s;
+	int		len;
+	long	nb;
+
+	nb = n;
+	len = ft_num_len(nb);
+	s = (char *)malloc(len + 1);
+	if (!s)
+		return (NULL);
+	s[len--] = '\0';
+	if (n < 0)
+	{
+		s[0] = '-';
+		nb = -nb;
+	}
+	if (n == 0)
+		s[0] = '0';
+	while (nb > 0)
+	{
+		s[len--] = (nb % 10) + '0';
+		nb /= 10;
+	}
+	return (s);
 }

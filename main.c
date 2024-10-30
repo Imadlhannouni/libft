@@ -248,6 +248,55 @@ void test_ft_split() {
     free_split_result(result);
 }
 
+void test_ft_itoa() {
+    char *result;
+
+    printf("\nTest ft_itoa (positive number):\n");
+    result = ft_itoa(1980);
+    if (result && strcmp(result, "1980") == 0) {
+        printf("- OK: %s\n", result);
+    } else {
+        printf("- KO: %s\n", result);
+    }
+    free(result);
+
+    printf("Test ft_itoa (zero):\n");
+    result = ft_itoa(0);
+    if (result && strcmp(result, "0") == 0) {
+        printf("- OK: %s\n", result);
+    } else {
+        printf("- KO: %s\n", result);
+    }
+    free(result);
+
+    printf("Test ft_itoa (negative number):\n");
+    result = ft_itoa(-42);
+    if (result && strcmp(result, "-42") == 0) {
+        printf("- OK: %s\n", result);
+    } else {
+        printf("- KO: %s\n", result);
+    }
+    free(result);
+
+    printf("Test ft_itoa (INT_MIN):\n");
+    result = ft_itoa(-2147483648);
+    if (result && strcmp(result, "-2147483648") == 0) {
+        printf("- OK: %s\n", result);
+    } else {
+        printf("- KO: %s\n", result);
+    }
+    free(result);
+
+    printf("Test ft_itoa (INT_MAX):\n");
+    result = ft_itoa(2147483647);
+    if (result && strcmp(result, "2147483647") == 0) {
+        printf("- OK: %s\n", result);
+    } else {
+        printf("- KO: %s\n", result);
+    }
+    free(result);
+}
+
 int main(void) {
     test_ft_isdigit();
     test_ft_strlcpy();
@@ -270,6 +319,7 @@ int main(void) {
     test_ft_putendl_fd();
     test_ft_putnbr_fd();
 	test_ft_split();
+    test_ft_itoa();
 
     return 0;
 }
