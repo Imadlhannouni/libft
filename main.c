@@ -17,7 +17,7 @@ void test_ft_strlcpy(void) {
     char *src = "Hello";
     size_t result = ft_strlcpy(dest, src, sizeof(dest));
     printf("ft_strlcpy to empty dest: %s\n", result == 5 ? "OK!" : "KO");
-    strcpy(dest, "");  // Clear dest for a fresh start
+    strcpy(dest, "");
     result = ft_strlcpy(dest, src, sizeof(dest));
     printf("ft_strlcpy to empty dest again: %s\n", result == 5 && strcmp(dest, "Hello") == 0 ? "OK!" : "KO");
 }
@@ -43,7 +43,7 @@ void test_ft_isascii(void) {
     printf("ft_isascii(127): %s\n", ft_isascii(127) ? "OK!" : "KO");
     printf("ft_isascii(128): %s\n", !ft_isascii(128) ? "OK!" : "KO");
     printf("ft_isascii(0): %s\n", ft_isascii(0) ? "OK!" : "KO");
-    printf("ft_isascii(65): %s\n", ft_isascii(65) ? "OK!" : "KO");  // 'A'
+    printf("ft_isascii(65): %s\n", ft_isascii(65) ? "OK!" : "KO"); 
 }
 
 void test_ft_isprint(void) {
@@ -51,7 +51,7 @@ void test_ft_isprint(void) {
     printf("ft_isprint('A'): %s\n", ft_isprint('A') ? "OK!" : "KO");
     printf("ft_isprint(31): %s\n", !ft_isprint(31) ? "OK!" : "KO");
     printf("ft_isprint(' '): %s\n", ft_isprint(' ') ? "OK!" : "KO");
-    printf("ft_isprint(126): %s\n", ft_isprint(126) ? "OK!" : "KO");  // '~'
+    printf("ft_isprint(126): %s\n", ft_isprint(126) ? "OK!" : "KO");
 }
 
 void test_ft_toupper(void) {
@@ -95,7 +95,7 @@ void test_ft_strlcat(void) {
     result = ft_strlcat(dest, src, sizeof(dest));
     printf("ft_strlcat('Hello', 'World', 20): %s, returned length: %zu\n", 
            strcmp(dest, "HelloWorld") == 0 && result == 10 ? "OK!" : "KO", result);
-    strcpy(dest, "Hello");  // Clear dest for a fresh start
+    strcpy(dest, "Hello");
     result = ft_strlcat(dest, src, 8);
     printf("ft_strlcat('Hello', 'World', 8): %s, returned length: %zu\n", 
            strcmp(dest, "HelloWo") == 0 && result == 10 ? "OK!" : "KO", result);
@@ -156,7 +156,7 @@ void test_ft_strtrim(void) {
 
 
 void test_ft_putchar_fd() {
-    printf("Test ft_putchar_fd: \n");
+    printf("\nTest ft_putchar_fd: \n");
     ft_putchar_fd('A', 1);
     if ('A' == 'A')
         printf("- OK\n");
@@ -165,7 +165,7 @@ void test_ft_putchar_fd() {
 }
 
 void test_ft_putstr_fd() {
-    printf("Test ft_putstr_fd: \n");
+    printf("\nTest ft_putstr_fd: \n");
     ft_putstr_fd("Hello, World!", 1);
     if (strcmp("Hello, World!", "Hello, World!") == 0)
         printf("- OK\n");
@@ -174,7 +174,7 @@ void test_ft_putstr_fd() {
 }
 
 void test_ft_putendl_fd() {
-    printf("Test ft_putendl_fd:\n ");
+    printf("\nTest ft_putendl_fd:\n ");
     ft_putendl_fd("This is a new line.", 1);
     if (strcmp("This is a new line.\n", "This is a new line.\n") == 0)
         printf("-OK\n");
@@ -183,14 +183,14 @@ void test_ft_putendl_fd() {
 }
 
 void test_ft_putnbr_fd() {
-    printf("Test ft_putnbr_fd (positive):\n ");
+    printf("\nTest ft_putnbr_fd (positive):\n ");
     ft_putnbr_fd(12345, 1);
     if (12345 == 12345)
         printf("-OK\n");
     else
         printf("-KO\n");
 
-    printf("Test ft_putnbr_fd (negative):\n ");
+    printf("\nTest ft_putnbr_fd (negative):\n ");
     ft_putnbr_fd(-67890, 1);
     if (-67890 == -67890)
         printf("OK\n");
@@ -198,6 +198,55 @@ void test_ft_putnbr_fd() {
         printf("KO\n");
 }
 
+void free_split_result(char **result) {
+    if (result) {
+        for (int i = 0; result[i]; i++) {
+            free(result[i]);
+        }
+        free(result);
+    }
+}
+
+void test_ft_split() {
+    char **result;
+
+    printf("\nTest ft_split (basic split):\n");
+    result = ft_split("Hello World", ' ');
+    if (result && strcmp(result[0], "Hello") == 0 && strcmp(result[1], "World") == 0 && result[2] == NULL) {
+        printf("-OK\n");
+    } else {
+        printf("-KO\n");
+    }
+    free_split_result(result);
+
+    printf("Test ft_split (multiple delimiters):\n");
+    result = ft_split("Split this  string", ' ');
+    if (result && strcmp(result[0], "Split") == 0 && strcmp(result[1], "this") == 0 && 
+        strcmp(result[2], "string") == 0 && result[3] == NULL) {
+        printf("-OK\n");
+    } else {
+        printf("-KO\n");
+    }
+    free_split_result(result);
+
+    printf("Test ft_split (leading and trailing spaces):\n");
+    result = ft_split("   Hello   ", ' ');
+    if (result && strcmp(result[0], "Hello") == 0 && result[1] == NULL) {
+        printf("-OK\n");
+    } else {
+        printf("-KO\n");
+    }
+    free_split_result(result);
+
+    printf("Test ft_split (empty string):\n");
+    result = ft_split("", ' ');
+    if (result && result[0] == NULL) {
+        printf("-OK\n");
+    } else {
+        printf("-KO\n");
+    }
+    free_split_result(result);
+}
 
 int main(void) {
     test_ft_isdigit();
@@ -220,6 +269,7 @@ int main(void) {
     test_ft_putstr_fd();
     test_ft_putendl_fd();
     test_ft_putnbr_fd();
+	test_ft_split();
 
     return 0;
 }
