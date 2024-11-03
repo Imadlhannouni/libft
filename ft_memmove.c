@@ -6,7 +6,7 @@
 /*   By: ilhannou <ilhannou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 14:43:00 by ilhannou          #+#    #+#             */
-/*   Updated: 2024/10/27 13:11:43 by ilhannou         ###   ########.fr       */
+/*   Updated: 2024/10/31 11:12:08 by ilhannou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	if (d > s)
 	{
 		i = len;
-		while (i > 0)
-		{
-			i--;
+		while (i--)
 			d[i] = s[i];
-		}
 	}
 	else
 	{

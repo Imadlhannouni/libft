@@ -6,7 +6,7 @@
 /*   By: ilhannou <ilhannou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 11:58:05 by ilhannou          #+#    #+#             */
-/*   Updated: 2024/10/30 16:09:43 by ilhannou         ###   ########.fr       */
+/*   Updated: 2024/11/02 21:14:28 by ilhannou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	size_t	src_len;
 	size_t	i;
 
-	if (!dst || !src)
+	if (!src)
 		return (0);
 	src_len = ft_strlen(src);
+	if (!dst)
+		return (src_len);
 	dst_len = ft_strlen(dst);
 	if (dstsize == 0)
 		return (src_len);
