@@ -6,7 +6,7 @@
 /*   By: ilhannou <ilhannou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:45:17 by ilhannou          #+#    #+#             */
-/*   Updated: 2024/10/31 11:07:00 by ilhannou         ###   ########.fr       */
+/*   Updated: 2024/11/04 15:17:51 by ilhannou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 
 	if (!s || !f)
 		return (NULL);
-	result = (char *)malloc(ft_strlen(s) + 1);
+	result = malloc(ft_strlen(s) + 1);
 	if (!result)
 		return (NULL);
 	i = 0;

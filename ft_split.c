@@ -6,7 +6,7 @@
 /*   By: ilhannou <ilhannou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 22:04:23 by ilhannou          #+#    #+#             */
-/*   Updated: 2024/10/29 15:01:07 by ilhannou         ###   ########.fr       */
+/*   Updated: 2024/11/04 15:39:39 by ilhannou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static char	**allocate(const char *s, char c)
 	i = 0;
 	j = 0;
 	start = 0;
-	arr = (char **)malloc((ft_count(s, c) + 1) * sizeof(char *));
+	arr = malloc((ft_count(s, c) + 1) * sizeof(char *));
 	if (!arr)
 		return (NULL);
 	while (s[i])
