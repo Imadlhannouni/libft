@@ -6,7 +6,7 @@
 /*   By: ilhannou <ilhannou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 15:18:26 by ilhannou          #+#    #+#             */
-/*   Updated: 2024/10/31 11:07:54 by ilhannou         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:26:45 by ilhannou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,20 @@ static int	ft_num_len(int n)
 	return (len);
 }
 
+static char	*int_min(int n)
+{
+	char	*s;
+
+	if (n == -2147483648)
+	{
+		s = malloc(12);
+		if (!s)
+			return (NULL);
+		ft_strlcpy(s, "-2147483648", 12);
+	}
+	return (s);
+}
+
 char	*ft_itoa(int n)
 {
 	char	*s;
@@ -34,8 +48,10 @@ char	*ft_itoa(int n)
 	long	nb;
 
 	nb = n;
+	if (nb == -2147483648)
+		return (int_min(nb));
 	len = ft_num_len(nb);
-	s = (char *)malloc(len + 1);
+	s = malloc(len + 1);
 	if (!s)
 		return (NULL);
 	s[len--] = '\0';

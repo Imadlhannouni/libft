@@ -14,8 +14,6 @@ BONUS = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstadd_back_bonus.c \
         ft_lstsize_bonus.c ft_lstlast_bonus.c ft_lstdelone_bonus.c \
         ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
 
-MAIN = main
-
 M_OBJS = $(SRCS:.c=.o)
 B_OBJS = $(BONUS:.c=.o)
 
@@ -23,26 +21,21 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
-
-$(NAME): $(M_OBJS) $(B_OBJS)
-	ar rcs $(NAME) $(M_OBJS) $(B_OBJS)
+$(NAME): $(M_OBJS)
+	ar rc $(NAME) $(M_OBJS)
 
 bonus: $(B_OBJS)
-	ar rcs $(NAME) $(B_OBJS)
+	ar rc $(NAME) $(B_OBJS)
 
-test: $(MAIN).o $(NAME)
-	$(CC) $(CFLAGS) -o $(MAIN) $(MAIN).o $(NAME)
-	./$(MAIN)
-
-%.o: %.c
+%.o: %.c libft.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(M_OBJS) $(B_OBJS) $(MAIN).o
+	rm -f $(M_OBJS) $(B_OBJS)
 
 fclean: clean
-	rm -f $(NAME) $(MAIN)
+	rm -f $(NAME)
 
-re: fclean all test
+re: fclean all
 
-.PHONY: all clean fclean re bonus norm
+.PHONY: all bonus clean fclean re

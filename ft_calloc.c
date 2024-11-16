@@ -6,7 +6,7 @@
 /*   By: ilhannou <ilhannou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 13:04:26 by ilhannou          #+#    #+#             */
-/*   Updated: 2024/10/31 11:15:47 by ilhannou         ###   ########.fr       */
+/*   Updated: 2024/11/06 10:32:54 by ilhannou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	void	*ptr;
 
 	total = nmemb * size;
-	if (nmemb != 0 && total / nmemb != size)
-		return (NULL);
 	ptr = malloc(total);
 	if (!ptr)
 		return (NULL);

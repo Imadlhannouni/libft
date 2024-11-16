@@ -6,7 +6,7 @@
 /*   By: ilhannou <ilhannou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 16:29:49 by ilhannou          #+#    #+#             */
-/*   Updated: 2024/10/31 16:41:13 by ilhannou         ###   ########.fr       */
+/*   Updated: 2024/11/05 13:30:46 by ilhannou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	current = *lst;
 	while (current)
 	{
-		next = current-> next;
+		next = current->next;
 		ft_lstdelone(current, del);
 		current = next;
 	}
